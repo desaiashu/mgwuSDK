@@ -7,7 +7,7 @@
 //
 //  Contains open source code from Crashlytics, Inc. (SecureUDID), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Facebook (FacebookConnect iOS), thank you to all!
 //
-//  MGWU_BUILD_NUMBER 3
+//  MGWU_BUILD_NUMBER 23
 //
 
 #import <UIKit/UIKit.h>
@@ -24,11 +24,28 @@
 + (void)debug;
 + (void)forceFacebook;
 
+
 /////////////////////////////////////////////////////////////////////////////////
 //
 //More Games:
 //
-+ (void)display;
++ (void)displayCrossPromo;
++ (void)display; //Depricated DO NOT USE!!!!
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//About:
+//
++ (void)displayAboutPage;
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//Analytics:
+//
++ (void)logEvent:(NSString*)eventName;
++ (void)logEvent:(NSString*)eventName withParams:(NSDictionary*)params;
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -42,23 +59,33 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//Analytics:
+//Encrypted NSUserDefaults
 //
-+ (void)logEvent:(NSString*)eventName;
-+ (void)logEvent:(NSString*)eventName withParams:(NSDictionary*)params;
++(void) setObject:(id)object forKey:(NSString*)keyword;
++(id) objectForKey:(NSString*)keyword;
 
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//Async gameplay
+//Async multiplayer
 //
-+ (void)getMyInfoWithCallback:(SEL)m onTarget:(id)t;
-+ (void)move:(NSDictionary*)move withMoveNumber:(int)moveNumber forGame:(int)gameID withGameState:(NSString*)gameState withGameData:(NSDictionary*)gameData againstPlayer:(NSString*)friend withCallback:(SEL)m onTarget:(id)t;
 + (NSString*)getUsername;
-+ (BOOL)isFacebookActive;
-+ (NSArray *)friendsToInvite;
++ (NSString*)shortName:(NSString*)friendname;
++ (void)getMyInfoWithCallback:(SEL)m onTarget:(id)t;
++ (void)move:(NSDictionary*)move withMoveNumber:(int)moveNumber forGame:(int)gameId withGameState:(NSString*)gameState withGameData:(NSDictionary*)gameData againstPlayer:(NSString*)friendId withCallback:(SEL)m onTarget:(id)t;
++ (void)getGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
++ (NSMutableArray *)friendsToInvite;
 + (void)getPlayerWithUsername:(NSString*)user withCallback:(SEL)m onTarget:(id)t;
 + (void)getRandomPlayerWithCallback:(SEL)m onTarget:(id)t;
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//Multiplayer Messaging
+//
++ (void)getMessagesWithFriend:(NSString*)friendId andCallback:(SEL)m onTarget:(id)t;
++ (void)sendMessage:(NSString*)message toFriend:(NSString*)friendId andCallback:(SEL)m onTarget:(id)t;
+
+
 
 /////////////////////////////////////////////////////////////////////////////////
 //
