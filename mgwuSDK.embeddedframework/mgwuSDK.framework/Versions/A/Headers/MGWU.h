@@ -7,7 +7,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 219
+//  MGWU_BUILD_NUMBER 223
 //
 
 #import <UIKit/UIKit.h>
@@ -21,6 +21,7 @@
 //
 + (void)loadMGWU:(NSString*)dev;
 + (void)debug;
++ (void)preFacebook;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -77,8 +78,8 @@
 //
 //Analytics:
 //
-+ (void)logEvent:(NSString*)eventName;
 + (void)logEvent:(NSString*)eventName withParams:(NSDictionary*)params;
++ (void)logEvent:(NSString*)eventName; //Depricated DO NOT USE!!!
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +134,6 @@
 + (void)toggleOpenGraph;
 + (BOOL)isOpenGraphActive;
 + (NSString*)fbidFromUsername:(NSString*)friendname;
-+ (void)preFacebook;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
