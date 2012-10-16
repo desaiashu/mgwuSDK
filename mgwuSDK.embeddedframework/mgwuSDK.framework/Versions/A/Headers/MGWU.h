@@ -7,7 +7,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 223
+//  MGWU_BUILD_NUMBER 239
 //
 
 #import <UIKit/UIKit.h>
@@ -20,8 +20,7 @@
 //General Setup:
 //
 + (void)loadMGWU:(NSString*)dev;
-+ (void)debug;
-+ (void)preFacebook;
++ (void)debug; //Depricated, has no use
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -36,7 +35,7 @@
 //Hipmob
 //
 + (void)setHipmobAppId:(NSString*)hipmobappid andAwayMessage:(NSString*)awaymessage;
-+ (void)displayHipmob;
++ (void)displayHipmob; //*
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -71,15 +70,15 @@
 //
 //About:
 //
-+ (void)displayAboutPage;
++ (void)displayAboutPage; //*
 
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 //Analytics:
 //
++ (void)logEvent:(NSString*)eventName;
 + (void)logEvent:(NSString*)eventName withParams:(NSDictionary*)params;
-+ (void)logEvent:(NSString*)eventName; //Depricated DO NOT USE!!!
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -88,6 +87,7 @@
 //
 + (void)submitHighScore:(int)score byPlayer:(NSString*)player forLeaderboard:(NSString*)leaderboard;
 + (void)getHighScoresForLeaderboard:(NSString*)l withCallback:(SEL)m onTarget:(id)t;
++ (void)submitHighScore:(int)score byPlayer:(NSString*)player forLeaderboard:(NSString *)leaderboard withCallback:(SEL)m onTarget:(id)t;
 //Depricated
 //+ (void)getHighScoresForMultipleLeaderboards:(NSArray*)l withCallback:(SEL)m onTarget:(id)t;
 
@@ -112,45 +112,49 @@
 //
 //Facebook
 //
-//Single Player Games
-+ (void)loginToFacebook;
+//General
++ (void)preFacebook;
++ (BOOL)isFacebookActive;
++ (NSString*)getUsername;
 + (void)likeAppWithPageId:(NSString*)pageid;
 + (void)likeMGWU;
-+ (void)inviteFriendsWithMessage:(NSString*)message;
 + (void)shareWithTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description;
 + (BOOL)handleURL:(NSURL*)url;
+
+//Open Graph (discuss with Ashu before using)
++ (BOOL)isOpenGraphActive;
++ (void)toggleOpenGraph;
++ (void)publishOpenGraphAction:(NSString*)action withParams:(NSDictionary *)ogparams;
++ (NSString*)fbidFromUsername:(NSString*)friendname;
+
+//Single Player Games
++ (void)loginToFacebook;
++ (NSMutableArray *)playingFriends;
++ (BOOL)canInviteFriends;
++ (void)inviteFriendsWithMessage:(NSString*)message; //*
 
 //Multiplayer Games
 + (void)forceFacebook;
 + (NSMutableArray *)friendsToInvite;
-+ (NSMutableArray *)playingFriends;
-+ (void)inviteFriend:(NSString*)friendname withMessage:(NSString*)message;
++ (void)inviteFriend:(NSString*)friendname withMessage:(NSString*)message; //*
 + (BOOL)isFriend:(NSString*)friendname;
-+ (void)postToFriendsWall:(NSString*)friendname withTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description;
-+ (void)addCoins:(int)coins withCallback:(SEL)m onTarget:(id)t;
-
-//Open Graph (discuss with Ashu before using)
-+ (void)publishOpenGraphAction:(NSString*)action withParams:(NSDictionary *)ogparams;
-+ (void)toggleOpenGraph;
-+ (BOOL)isOpenGraphActive;
-+ (NSString*)fbidFromUsername:(NSString*)friendname;
++ (void)postToFriendsWall:(NSString*)friendname withTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description; //*
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 //Twitter
 + (BOOL)isTwitterActive;
-+ (void)postToTwitter:(NSString*)message;
++ (void)postToTwitter:(NSString*)message; //*
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 //Async multiplayer
 //
-+ (NSString*)getUsername;
-+ (NSString*)shortName:(NSString*)friendname;
 + (void)getMyInfoWithCallback:(SEL)m onTarget:(id)t;
 + (void)move:(NSDictionary*)move withMoveNumber:(int)moveNumber forGame:(int)gameId withGameState:(NSString*)gameState withGameData:(NSDictionary*)gameData againstPlayer:(NSString*)friendId withPushNotificationMessage:(NSString*)message withCallback:(SEL)m onTarget:(id)t;
 + (void)getGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
 + (void)getPlayerWithUsername:(NSString*)user withCallback:(SEL)m onTarget:(id)t;
++ (void)getAchievementsForPlayer:(NSString*)playername withCallback:(SEL)m onTarget:(id)t;
 + (void)getRandomPlayerWithCallback:(SEL)m onTarget:(id)t;
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +174,7 @@
 + (void)testBuyProduct:(NSString*)productId withCallback:(SEL)m onTarget:(id)t;
 + (void)testRestoreProducts:(NSArray*)products withCallback:(SEL)m onTarget:(id)t;
 
-+ (void)buyProduct:(NSString*)productId withCallback:(SEL)m onTarget:(id)t;
++ (void)buyProduct:(NSString*)productId withCallback:(SEL)m onTarget:(id)t; //*
 + (void)restoreProductsWithCallback:(SEL)m onTarget:(id)t;
 
 
