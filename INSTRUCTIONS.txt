@@ -1,3 +1,23 @@
+Table of Contents:
+
+1. Setting up mgwuSDK
+2. Cross Promo
+3. About Page
+4. Contact Button
+5. Analytics
+6. Prompt for Rating and Crash Reporting
+7. Push Notifications
+8. In App Notifications
+9. Encrypted NSUserDefaults
+10. Targets and Callbacks and Data
+11. High Scores
+12. Achievements
+13. In App Purchases
+14. Twitter Sharing
+15. Getting Started With Facebook
+16. Facebook Methods
+17. Turn Based or Social Multiplayer Games
+
 1. Setting up mgwuSDK
 
 If there are any features you wish to see in the our SDK that aren't there, or things you think can be done better, please drop me a line (ashu@makegameswith.us)
@@ -399,7 +419,7 @@ To invite friends:
 [MGWU inviteFriendsWithMessage:@"Default Invite Message"];
 This method will try to use facebook to invite friends, if that is not available, it will try to use the text message prompt, and if neither are available it will use mail to invite friends. The link to the app will be prepopulated (as will the app icon for facebook).
 
-16. Turn Based or Social Multiplayer Games
+17. Turn Based or Social Multiplayer Games
 
 Turn Based Multiplayer games rely on Facebook. These games gain huge benefit from the ability to play and share with your friends. It also simplifies the user creation flow, no need to create an independent login, and we can even use Facebook usernames (aka vanity urls) as the username in game.
 
