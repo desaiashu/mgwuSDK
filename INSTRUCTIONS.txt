@@ -58,7 +58,7 @@ On the right of each framework there is a selector to let you pick between requi
 For Accounts, AdSupport, Social and Twitter change it to optional.
 
 Then go into BuildSettings. On the top left, click on all, and combined. On the top right, search "Other Linker Flags"
-Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-sqlite3.0".
+Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-lsqlite3.0".
 
 <https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/flags.png>
 
