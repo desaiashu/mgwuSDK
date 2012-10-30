@@ -7,7 +7,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 239
+//  MGWU_BUILD_NUMBER 248
 //
 
 #import <UIKit/UIKit.h>
@@ -106,6 +106,7 @@
 //
 + (void)setObject:(id)object forKey:(NSString*)keyword;
 + (id)objectForKey:(NSString*)keyword;
++ (void)removeObjectForKey:(NSString*)keyword;
 
 
 /////////////////////////////////////////////////////////////////////////////////

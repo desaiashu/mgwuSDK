@@ -1,12 +1,12 @@
-Table of Contents:
+Table of Contents (mandatory elements have a *):
 
-1. Setting up mgwuSDK
-2. Cross Promo
-3. About Page
+1. *Setting up mgwuSDK
+2. *Cross Promo
+3. *About Page
 4. Contact Button
-5. Analytics
-6. Prompt for Rating and Crash Reporting
-7. Push Notifications
+5. *Analytics
+6. *Prompt for Rating and Crash Reporting
+7. *Push Notifications
 8. In App Notifications
 9. Encrypted NSUserDefaults
 10. Targets and Callbacks and Data
@@ -58,7 +58,7 @@ On the right of each framework there is a selector to let you pick between requi
 For Accounts, AdSupport, Social and Twitter change it to optional.
 
 Then go into BuildSettings. On the top left, click on all, and combined. On the top right, search "Other Linker Flags"
-Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-sqlite3.0".
+Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-lsqlite3.0".
 
 <https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/flags.png>
 
@@ -90,7 +90,7 @@ Make sure this is only called once when the button is pressed
 3. About Page
 
 When the About Button is clicked, include the line:
-[MGWU displayAbout];
+[MGWU displayAboutPage];
 Note: this will show a blank page until we add the about screen image for your game later on.
 
 4. Contact Button
@@ -165,7 +165,7 @@ First, you should make a copy of your app icon sized 34x34px and call it "MGWUIc
 Then display the alert using this line:
 [MGWU showMessage:@"Hey, how is it going?" withImage:nil];
 
-If you don't have a special image you want to show, you can also instead use:
+If you have a special image you want to show, you can also instead use:
 [MGWU showMessage:@"Hey, how is it going?" withImage:@"MyImage.png"];
 Where MyImage.png is also a 34x34px image with an @2x retina version (Note, you need to use @2x instead of -hd for this unlike in cocos/kobold)
 
@@ -175,6 +175,7 @@ NSUserDefaults is easily hackable if you jailbreak your phone. So if you happen 
 For things needing security (like scores or gold) you can use our encrypted version of NSUserDefaults like so (the syntax is almost identical to NSUserDefaults:
 [MGWU setObject:myObject forKey:@"myKey"];
 myObject = [MGWU objectForKey:@"myKey"];
+[MGWU removeObjectForKey:@"myKey"];
 
 You should only use this for ObjectiveC objects (NSArray, NSDictionary, NSString, NSNumber), not for custom objects you create.
 You shouldn't use this for everything as it is slower (since it encrypts and decrypts the values when storing and retrieving)
@@ -221,7 +222,7 @@ These can also be nested like so:
 This corresponds to the new literal syntax in objective c (see http://cocoaheads.tumblr.com/post/17757846453/objective-c-literals-for-nsdictionary-nsarray-and)
 
 Why we need callbacks:
-Anytime the SDK is retreiving data from the server we show a loading wheel (for a better user experience).
+Anytime the SDK is retrieving data from the server we show a loading wheel (for a better user experience).
 Because of the way the iPhone works, you cannot show the loading wheel while calling a method that talks to the server and returns a value the normal way, so we need to use callbacks and targets.
 
 11. High Scores
@@ -425,14 +426,15 @@ Turn Based Multiplayer games rely on Facebook. These games gain huge benefit fro
 
 Make sure you have read the Callbacks and Targets tutorial as well as the Getting Started with Facebook and Facebook Methods tutorials. 
 It would also be really good to check out our project templates <link>, we highly recommend starting from those because it will make your life way easier.
-There much point in reinventing the wheel with the menu structure for this kind of game, so better to start from somewhere.
+There is not much point in reinventing the wheel with the menu structure for this kind of game, so better to start from somewhere.
 
 For these games, we require every user uses Facebook. You can do so in your app by adding this line after [MGWU loadMGWU] in AppDelegate.m:
 [MGWU forceFacebook];
 
 The multiplayer system is built around the concept of back and forth games between two players (similar to Words with Friends). If you're building a multiplayer/social game that won't work using our current SDK, please drop me a line (ashu@makegameswith.us), we can most likely add the features you want to the SDK.
 
-The Game object is a dictionary with this format:
+The Game object represents a single game between two players. 
+It is a dictionary with this format:
 @{
 	@"gameid" : @8,
 	@"players" : @[
@@ -466,7 +468,7 @@ The Game object is a dictionary with this format:
 
 The gamedata and moves are defined by you. The array of moves is limited to the last 3 moves (contact me at ashu@makegameswith.us if you have a game that needs more of the past moves)
 All timestamps are in epoch time. newmessages is the number of unread messages in the chat for each game. 
-turn tells you whos turn it is, currently games are required to be strictly turn based (contact me at ashu@makegameswith.us if you have a game that needs a different format)
+turn tells you whose turn it is, currently games are required to be strictly turn based (contact me at ashu@makegameswith.us if you have a game that needs a different format)
 
 There are three states a game can be in:
 1. @"started" when you a new game has just been begun
