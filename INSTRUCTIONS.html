@@ -745,13 +745,32 @@ Then when the user clicks on the tweet button, use this method to pull up the wi
 <p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/facebook1.png" alt="image" />
 <img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/facebook2.png" alt="image" /></p>
 
+<p>Then add this method to AppDelegate.m:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [MGWU handleURL:url];
+}
+</code></pre>
+
+<p>And delete this line from AppDelegate.m:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU preFacebook];
+</code></pre>
+
+<p>Finally, you should make a copy of your games logo smaller than 300px wide by 80px tall and call it "Logo.png" and also make a retina version doublethe site called "Logo@2x.png" (if you don't have your app logo yet, use a placeholder image).</p>
+
+<p>The login flow for Facebook will be handled automatically for you. Also when a player goes to a new device and logs in with Facebook, all their data will be transferred. The user will now be asked to authenticate with Facebook the first time they open the app, and if they say no, it will ask them again after 12 and 24 play sessions.</p>
+
 <h2>16. Facebook Methods</h2>
 
 <p><strong>Make sure you have read Getting Started With Facebook to get everything set up.</strong></p>
-
-<p>The login flow for Facebook will be handled automatically for you. Also when a player goes to a new device and logs in with Facebook, all their data will be transferred.</p>
-
-<p>First, you should make a copy of your games logo smaller than 300px wide by 80px tall and call it "Logo.png" and also make a retina version doublethe site called "Logo@2x.png" (if you don't have your app logo yet, use a placeholder image).</p>
 
 <p>To find out if a user is currently logged into Facebok, use the method:</p>
 
