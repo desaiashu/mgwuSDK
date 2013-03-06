@@ -10,7 +10,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 298
+//  MGWU_BUILD_NUMBER 304
 //
 
 #import <UIKit/UIKit.h>
@@ -62,7 +62,7 @@
 //Alert Player
 //
 + (void)showMessage:(NSString*)message withImage:(NSString*)imageName;
-
++ (void)showError;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -160,6 +160,7 @@
 + (void)getMyInfoWithCallback:(SEL)m onTarget:(id)t;
 + (void)move:(NSDictionary*)move withMoveNumber:(int)moveNumber forGame:(int)gameId withGameState:(NSString*)gameState withGameData:(NSDictionary*)gameData againstPlayer:(NSString*)friendId withPushNotificationMessage:(NSString*)message withCallback:(SEL)m onTarget:(id)t;
 + (void)getGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
++ (void)deleteGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
 + (void)getPlayerWithUsername:(NSString*)user withCallback:(SEL)m onTarget:(id)t;
 + (void)getAchievementsForPlayer:(NSString*)playername withCallback:(SEL)m onTarget:(id)t;
 + (void)getRandomPlayerWithCallback:(SEL)m onTarget:(id)t;

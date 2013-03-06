@@ -144,13 +144,18 @@ pre code {
 	}
 }
 </style>
-<title>mgwuSDK Instructions</title>
+<title>mgwuSDK Instructions
+====================
+
+**In order to use the mgwuSDK in a production app, you must publish</title>
 
 </head>
 <body>
 <h1>mgwuSDK Instructions</h1>
 
-<p><strong>In order to use the mgwuSDK in a production app, you must publish through <a href="https://www.makegameswith.us">MakeGamesWithUs</a>. You are free to use the SDK during development with no strings attached. If you would like to use the mgwuSDK without publishing through us or if you have any questions, contact <a href="mailto:publish@makegameswith.us">publish@makegameswith.us</a></strong></p>
+<p><strong>In order to use the mgwuSDK in a production app, you must publish through <a href="https://www.makegameswith.us">MakeGamesWithUs</a> OR include our cross-promo button on your game's main menu and pay 15% of your game's revenues in excess of $1000 to MakeGamesWithUs.</strong></p>
+
+<p><strong>You are free to use the SDK during development with no strings attached. If you have any questions about this, contact <a href="mailto:publish@makegameswith.us">publish@makegameswith.us</a></strong></p>
 
 <h2>Table of Contents:</h2>
 
@@ -187,7 +192,7 @@ pre code {
 </tr>
 <tr>
 <td>6. <a href="#5"><strong>Prompt for Rating and Crash Reporting</strong></a> </td>
-<td> <a href="#f">f. Reloading a Game</a></td>
+<td> <a href="#f">f. Reloading or Deleting a Game</a></td>
 </tr>
 <tr>
 <td>7. <a href="#7"><strong>Push Notifications</strong></a> </td>
@@ -865,6 +870,32 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 
 <p>The login flow for Facebook will be handled automatically for you. Also when a player goes to a new device and logs in with Facebook, all their data will be transferred. The user will now be asked to authenticate with Facebook the first time they open the app, and if they say no, it will ask them again after 12 and 24 play sessions.</p>
 
+<p><strong>IMPORTANT NOTE: if you are using Kobold or Cocos, you must also add the following methods to AppDelegate.m</strong></p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [director stopAnimation];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [director startAnimation];
+}
+
+-(void) applicationWillResignActive:(UIApplication *)application
+{
+    [director pause];
+}
+
+-(void) applicationDidBecomeActive:(UIApplication *)application
+{
+    [director resume];
+}
+</code></pre>
+
 <p><a id="16"></a></p>
 
 <h2>16. Facebook Methods</h2>
@@ -979,6 +1010,8 @@ To log the user in:</p>
 <p><strong>Make sure you have read the <a href="#10">Callbacks and Targets</a> tutorial as well as the <a href="#15">Getting Started with Facebook</a> and <a href="#16">Facebook Methods</a> tutorials.</strong></p>
 
 <p><strong>It would also be really good to check out our <a href="https://s3.amazonaws.com/mgwu/ghost.zip">Ghost project template</a>, we highly recommend starting from that because most of the heavy lifting has already been done.</strong> There is no need to reinvent the wheel with the menu structure for this kind of game, so not much point in starting from scratch.</p>
+
+<h2>When referencing the Ghost template, Command-F (find) is your friend :)</h2>
 
 <p>Turn Based Multiplayer games rely on Facebook. These games gain huge benefit from the ability to play and share with your friends. It also simplifies the user creation flow, no need to create an independent login, and we can even use Facebook usernames (aka vanity urls) as the username in game.</p>
 
@@ -1105,7 +1138,7 @@ To log the user in:</p>
 
 <p>The list of players to start a game with will have a few components.</p>
 
-<p>You want to present a list of facebook friends who also play the game, but make sure to remove the players you are currently in a game with from the list (this can be done by running through the list of existing games, the Ghost template has a great example of this).</p>
+<p>You want to present a list of facebook friends who also play the game, but make sure to remove the players you are currently in a game with from the list (this can be done by running through the list of existing games, the Ghost template has a great example of this in the InterfaceLayer+PlayersTableLayer or TabBarController+PlayersViewController).</p>
 
 <p>You also need to allow players to begin games with random players, or by searching a username. To retrieve a random player:</p>
 
@@ -1272,7 +1305,7 @@ To log the user in:</p>
 
 <p><a id="f"></a></p>
 
-<h2>f. Reloading a Game</h2>
+<h2>f. Reloading or Deleting a Game</h2>
 
 <p>If you want to reload a certain game without reloading all the userinfo, you can use the method:</p>
 
@@ -1285,6 +1318,16 @@ To log the user in:</p>
 <p>The callback will be passed the updated game object.</p>
 
 <p>You probably also want to refresh the game object when the app receives a push notification with a game update. The Ghost template has a great example of this.</p>
+
+<p>If you want to delete a specific game, you can use the method:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU deleteGame:gameID withCallback:@selector(deletedGame:) onTarget:self];
+</code></pre>
+
+<p>The callback will be passed nil if it failed, and an NSString (@"success") if it succeeded.</p>
 
 <p>If you want to delete all games during testing, you can use the url: <a href="https://dev.makegameswith.us/cleargames">https://dev.makegameswith.us/cleargames</a></p>
 
