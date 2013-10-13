@@ -10,7 +10,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 376
+//  MGWU_BUILD_NUMBER 403
 //
 
 #import <UIKit/UIKit.h>
@@ -142,7 +142,8 @@
 + (void)loginToFacebookWithCallback:(SEL)m onTarget:(id)t;
 + (NSMutableArray *)playingFriends;
 + (BOOL)canInviteFriends;
-+ (void)inviteFriendsWithMessage:(NSString*)message; //*
++ (void)inviteFriendsWithMessage:(NSString*)message;
++ (void)inviteFriendsWithMessage:(NSString *)message withCallback:(SEL)m onTarget:(id)t;
 
 //Multiplayer Games
 + (void)forceFacebook;
