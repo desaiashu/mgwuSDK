@@ -150,9 +150,7 @@ pre code {
 <body>
 <h1>mgwuSDK Instructions</h1>
 
-<p><strong>In order to use the mgwuSDK in a production app, you must publish through <a href="https://www.makegameswith.us">MakeGamesWithUs</a> OR include our cross-promo button on your game's main menu and pay 15% of your game's revenues in excess of $1000 to MakeGamesWithUs.</strong></p>
-
-<p><strong>You are free to use the SDK during development with no strings attached. If you have any questions about this, contact <a href="mailto:publish@makegameswith.us">publish@makegameswith.us</a></strong></p>
+<p><strong>The mgwuSDK is free, if your app becomes the next Snapchat we'll ask you to cover our server costs :)</strong></p>
 
 <h2>Table of Contents:</h2>
 
@@ -172,51 +170,51 @@ pre code {
 <td> <a href="#a">a. Setup</a></td>
 </tr>
 <tr>
-<td>2. <a href="#2"><strong>Cross Promo</strong></a> </td>
+<td>2. <a href="#2"><strong>Analytics</strong></a> </td>
 <td> <a href="#b">b. The Game Object</a></td>
 </tr>
 <tr>
-<td>3. <a href="#3"><strong>About Page</strong></a> </td>
+<td>3. <a href="#3"><strong>Prompt for Rating and Reminder Message</strong></a> </td>
 <td> <a href="#c">c. Getting the User's Data</a></td>
 </tr>
 <tr>
-<td>4. <a href="#4">Contact Button</a> </td>
+<td>4. <a href="#5">Cross Promo</a> </td>
 <td> <a href="#d">d. Picking an Opponent</a></td>
 </tr>
 <tr>
-<td>5. <a href="#5"><strong>Analytics</strong></a> </td>
+<td>5. <a href="#5">About Page</a> </td>
 <td> <a href="#e">e. Making Moves</a></td>
 </tr>
 <tr>
-<td>6. <a href="#5"><strong>Prompt for Rating and Crash Reporting</strong></a> </td>
+<td>6. <a href="#6">Push Notifications</a> </td>
 <td> <a href="#f">f. Reloading or Deleting a Game</a></td>
 </tr>
 <tr>
-<td>7. <a href="#7"><strong>Push Notifications</strong></a> </td>
+<td>7. <a href="#7">In App Notifications</a> </td>
 <td> <a href="#g">g. Chat</a></td>
 </tr>
 <tr>
-<td>8. <a href="#8">In App Notifications</a> </td>
-<td> <a href="#h">h. Inviting Facebook Friends</a></td>
+<td>8. <a href="#8">Encrypted NSUserDefaults</a> </td>
+<td> <a href="#h">h. Inviting Friends</a></td>
 </tr>
 <tr>
-<td>9. <a href="#9">Encrypted NSUserDefaults</a> </td>
+<td>9. <a href="#9">Callbacks and Targets and Data</a> </td>
 <td> <a href="#i">i. Misc</a></td>
 </tr>
 <tr>
-<td>10. <a href="#11">Callbacks and Targets and Data</a> </td>
+<td>10. <a href="#10">High Scores</a> </td>
 <td></td>
 </tr>
 <tr>
-<td>11. <a href="#11">High Scores</a> </td>
+<td>11. <a href="#11">Achievements</a> </td>
 <td></td>
 </tr>
 <tr>
-<td>12. <a href="#12">Achievements</a> </td>
+<td>12. <a href="#12">In App Purchases</a> </td>
 <td></td>
 </tr>
 <tr>
-<td>13. <a href="#13">In App Purchases</a> </td>
+<td>14. <a href="#13">SMS / Email Sharing</a> </td>
 <td></td>
 </tr>
 <tr>
@@ -256,34 +254,34 @@ pre code {
 <p>Add the following frameworks:</p>
 
 <ul>
-<li>Accounts.framework</li>
-<li>AdSupport.framework</li>
-<li>CFNetwork.framework</li>
-<li>CoreTelephony.framework</li>
-<li>libicucore.dylib</li>
+<li>libz.dylib</li>
 <li>MessageUI.framework</li>
-<li>Security.framework</li>
 <li>Social.framework</li>
 <li>StoreKit.framework</li>
 <li>SystemConfiguration.framework</li>
-<li>Twitter.framework</li>
 </ul>
 
 
-<p>On the right of each framework there is a selector to let you pick between required and optional. For Accounts, AdSupport, Social and Twitter change it to optional.</p>
+<p><strong>On the right of each framework there is a selector to let you pick between required and optional. For Social and Twitter change it to optional.</strong></p>
+
+<p>Then scroll up to Deployment Info and set the Deployment Target to iOS 6.0.</p>
 
 <p>Then go into Info. Change the Bundle identifier to "com.xxx.xxx" to match the app you created on the server. Delete the project from any simulator / device you've been testing on. On the top bar go to Product -> Clean. This should ensure you are using the new bundle identifier.</p>
 
 <p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/bundle.png" alt="image" /></p>
 
-<p>Then go into BuildSettings. On the top left, click on all, and combined. On the top right, search "Other Linker Flags". Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-lsqlite3.0".</p>
+<!--Then go into BuildSettings. On the top left, click on all, and combined. On the top right, search "Other Linker Flags". Double click to the right of "Other Linker Flags", and in the bottom left of the popup hit the + button. Add "-lsqlite3.0". (note: the first letter is a lower case el not an upper case eye)
 
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/flags.png" alt="image" /></p>
+![image](https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/flags.png)-->
 
-<p>Drag the mgwuSDK.embeddedframework folder into the frameworks folder in your project, make sure you select "copy files and add them to target"!</p>
 
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/drag.png" alt="image" />
-<img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/copy.png" alt="image" /></p>
+<p>Drag the <strong>mgwuSDK.embeddedframework</strong> folder into the frameworks folder in your project, make sure you select "copy files and add them to target"!</p>
+
+<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/drag.png" alt="image" /></p>
+
+<p><strong>Make sure you dragged in the mgwuSDK.embeddedFramework folder (not the mgwuSDK.framework folder)</strong></p>
+
+<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/copy.png" alt="image" /></p>
 
 <p>In the bottom left of the project navigator, search ".pch". Select the file that ends in either Prefix.pch or Prefix-iOS.pch. Right under #import &lt;Foundation/Foundation.h> add the line:</p>
 
@@ -295,13 +293,14 @@ pre code {
 
 <p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/pch.png" alt="image" /></p>
 
-<p>Now open the file AppDelegate.m. In the method initializationComplete (or application: didFinishLaunchingWithOptions:) add the lines:</p>
+<p>If you don't have a Prefix.pch, you'll need to add the import line at the top of all the .m files where you access the SDK.</p>
+
+<p>Now open the file AppDelegate.m. In the method "application: didFinishLaunchingWithOptions:" add the lines:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
 
 <pre><code>[MGWU loadMGWU:@"secretkey"];
-[MGWU preFacebook]; //Temporarily disables Facebook until you integrate it later
 </code></pre>
 
 <p>Replace 'secretkey' with the secret key you used when you created your app on the server.</p>
@@ -318,51 +317,11 @@ pre code {
 
 <p><a id="2"></a></p>
 
-<h2>2. Cross Promo</h2>
-
-<p>All games should include a More Games button. This is used to promote other games in our catalog and in return you get your game promoted! When the More Games button is tapped include the line:</p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>[MGWU displayCrossPromo];
-</code></pre>
-
-<p>Make sure this is only called once when the button is pressed</p>
-
-<p><a id="3"></a></p>
-
-<h2>3. About Page</h2>
-
-<p>If you'ld like to have an about page in the game feature you as a developer, you should include an About button. When the About Button is tapped, include the line:</p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>[MGWU displayAboutPage];
-</code></pre>
-
-<p>Note: this will show a blank page until we add the about screen image for your game later on.</p>
-
-<p><a id="4"></a></p>
-
-<h2>4. Contact Button</h2>
-
-<p>If you would like to add live support chat (through Hipmob) to your game, you should include a contact button. When the contact button is tapped, include the line:</p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>[MGWU displayHipmob];
-</code></pre>
-
-<p><strong>Note: initially this will do nothing, until we initialize hipmob before submitting the game to the app store. We will set you up on hipmob so you can live chat with users of your app.</strong></p>
-
-<p><a id="5"></a></p>
-
-<h2>5. Analytics</h2>
+<h2>2. Analytics</h2>
 
 <p>Analytics are incredibly important, they help you understand how users are interacting with your app. Analyzing these can help fix user experience issues with the game, and improve engagement and monetization.</p>
+
+<p>First, create an app on Mixpanel.com, go into settings and copy the token of your app. Send an email to ashu@makegameswith.us with your app's bundle ID and the token.</p>
 
 <p>Basic analytics of opening and closing the app are included by default, as are opening the cross promo widget and the about page. We've also included analytics for sharing and buying in app purchases.</p>
 
@@ -395,23 +354,18 @@ NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"sc
 
 <p>You want to make sure to use as few events as possible, if you have too many different types of events it will be really hard to see what is going on on the analytics dashboard. So for things like completing a level, you should have one event called "level_complete" and pass the level number as a parameter. Or for example, the number of goldfish eaten in a game of Killah Killah Whale, you want to include that as a parameter for the event "game_completed)".</p>
 
-<p>We use Mixpanel as a dashboard for the analytics, we will give you access to this when your app goes live on the app store.</p>
+<p><a id="3"></a></p>
 
-<p><a id="6"></a></p>
+<h2>3. Prompt for Rating and Reminder Message</h2>
 
-<h2>6. Prompt for Rating and Crash Reporting</h2>
+<p>We provide functionality to prompt users to rate your app on the app store. Add the line:</p>
 
-<p>We provide functionality to prompt users to rate your app on the app store, as well as collecting crash reports so you can crush any bugs you might have.</p>
+<pre><code>[MGWU setAppiraterAppId:appid andAppName:appname];
+</code></pre>
 
-<p>These will work automagically, we will set it up for you before submitting your game to the app store.</p>
+<p>Where the appid is the iTunes App ID from iTunes Connect, and appname is the name of your app.</p>
 
-<p><a id="7"></a></p>
-
-<h2>7. Push Notifications</h2>
-
-<p>We do most of the legwork for setting up Push Notifications for you.</p>
-
-<p>We send reminder push notifications to a player if they haven't opened the app in a while. You can set the message for the reminder push notifications with this line of code:</p>
+<p>If you want to send reminder push notifications to a player if they haven't opened the app in a while. You can set the message for the reminder push notifications with this line of code:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -419,7 +373,39 @@ NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"sc
 <pre><code>[MGWU setReminderMessage:@"Come back and play this game now!"];
 </code></pre>
 
-<p>You also need to add these methods to AppDelegate.m:</p>
+<p><a id="4"></a></p>
+
+<h2>4. Cross Promo</h2>
+
+<p>All games should include a More Games button. This is used to promote other games in our catalog and in return you get your game promoted! When the More Games button is tapped include the line:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU displayCrossPromo];
+</code></pre>
+
+<p>Make sure this is only called once when the button is pressed</p>
+
+<p><a id="5"></a></p>
+
+<h2>5. About Page</h2>
+
+<p>If you'ld like to have an about page in the game feature you as a developer, you should include an About button. When the About Button is tapped, include the line:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU displayAboutPage];
+</code></pre>
+
+<p>Note: this will show a blank page until we add the about screen image for your game later on.</p>
+
+<p><a id="6"></a></p>
+
+<h2>6. Push Notifications</h2>
+
+<p>To register for push notifications, add these methods to AppDelegate.m:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -450,9 +436,9 @@ NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"sc
 
 <p>Push notifications require a special provisioning profile, so they won't work at first, contact ashu@makegameswith.us to get set up to test them once your game is nearing completion.</p>
 
-<p><a id="8"></a></p>
+<p><a id="7"></a></p>
 
-<h2>8. In App Notifications</h2>
+<h2>7. In App Notifications</h2>
 
 <p>We display any push notifications you receive while in the app with a little dropdown notification. You can also use this dropdown notification to alert players in game when they get achievements or letting players know about a sale in the store, etc.</p>
 
@@ -476,9 +462,9 @@ NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"sc
 
 <p>Where MyImage.png is also a 34x34px image with an @2x retina version. (Note: you need to use @2x instead of -hd for this unlike the cocos/kobold standard)</p>
 
-<p><a id="9"></a></p>
+<p><a id="8"></a></p>
 
-<h2>9. Encrypted NSUserDefaults</h2>
+<h2>8. Encrypted NSUserDefaults</h2>
 
 <p>NSUserDefaults is easily hackable if you jailbreak your phone. So if you happen to be saving things like the amount of in game currency a player has or a players high score in NSUserDefaults, it would be easy for a player to cheat.</p>
 
@@ -496,9 +482,9 @@ myObject = [MGWU objectForKey:@"myKey"];
 
 <p>You shouldn't use this for everything as it is slower (since it encrypts and decrypts the values when storing and retrieving)</p>
 
-<p><a id="10"></a></p>
+<p><a id="9"></a></p>
 
-<h2>10. Callbacks and Targets and Data</h2>
+<h2>9. Callbacks and Targets and Data</h2>
 
 <p>For many parts of the SDK we need to use Callback methods.</p>
 
@@ -575,9 +561,9 @@ NSDictionary - @{@"Key1":@"Value1", @"Key2":@2, @"Key3":@"Value3"}
 
 <p>Anytime the SDK is retrieving data from the server we show a loading wheel (for a better user experience). Because of the way the iPhone works, you cannot show the loading wheel while calling a method that talks to the server and returns a value the normal way, so we need to use callbacks and targets.</p>
 
-<p><a id="11"></a></p>
+<p><a id="10"></a></p>
 
-<h2>11. High Scores</h2>
+<h2>10. High Scores</h2>
 
 <p><strong>Make sure you have read the <a href="#10">Callbacks and Targets</a> tutorial.</strong></p>
 
@@ -668,9 +654,9 @@ NSDictionary - @{@"Key1":@"Value1", @"Key2":@2, @"Key3":@"Value3"}
 
 <p>High scores you submit in development won't show up when the app is in the wild.</p>
 
-<p><a id="12"></a></p>
+<p><a id="11"></a></p>
 
-<h2>12. Achievements</h2>
+<h2>11. Achievements</h2>
 
 <p><strong>Make sure you have read the <a href="#10">Callbacks and Targets</a> tutorial.</strong></p>
 
@@ -754,9 +740,9 @@ NSDictionary - @{@"Key1":@"Value1", @"Key2":@2, @"Key3":@"Value3"}
 
 <p>Achievements you submit in development won't show up when the app is in the wild.</p>
 
-<p><a id="13"></a></p>
+<p><a id="12"></a></p>
 
-<h2>13. In App Purchases</h2>
+<h2>12. In App Purchases</h2>
 
 <p><strong>Make sure you have read the <a href="#10">Callbacks and Targets</a> tutorial.</strong></p>
 
@@ -784,9 +770,9 @@ NSDictionary - @{@"Key1":@"Value1", @"Key2":@2, @"Key3":@"Value3"}
 
 <p><strong>When a user successfully purchases or restores, it would be great to let them know it was successful using the showMessage method (see the In App Notifications tutorial).</strong></p>
 
-<p>Once your app is nearing completion, you will switch to the real in app purchase methods (they behave identically to the test methods) and real product identifiers. We need to enable these for you, so contact ashu@makegameswith.us to get set up with this.</p>
+<p>Once your app is nearing completion, you will switch to the real in app purchase methods (they behave identically to the test methods) and real product identifiers. You'll first need to set up your In App Purchases and product identifiers in iTunes Connect.</p>
 
-<p>After you've talked to us, you'll need to add this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
+<p>After you've set them up in iTunes Connect, you'll need to add this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -803,16 +789,57 @@ NSDictionary - @{@"Key1":@"Value1", @"Key2":@2, @"Key3":@"Value3"}
 [MGWU restoreProductsWithCallback:@selector(restoredProducts:) onTarget:self];
 </code></pre>
 
+<p><a id="13"></a></p>
+
+<h2>13. SMS / Email Sharing</h2>
+
+<p>You might want to allow players to invite their friends via SMS / Email.</p>
+
+<p>First, set the link to the app (if you have an android version, make this a web link that redirects based on the user's device) by adding this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU setGameLinkURL:url];
+</code></pre>
+
+<p>Where url is a link to the app (including http/https).</p>
+
+<p>SMS/Email sharing is only enabled when the user is on an iPhone or has a mail account logged in. You can check if they meet these conditions using the call:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU canInviteFriends];
+</code></pre>
+
+<p>You should only display the invite button if the isTwitterActive method returns true. Then when the user taps on the invite button, use this method to pull up the widget that lets you send SMS/Email:</p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU inviteFriendsWithMessage:@"Your Default Message Goes Here"];
+</code></pre>
+
 <p><a id="14"></a></p>
 
 <h2>14. Twitter Sharing</h2>
 
 <p>You should add a twitter share button strategically after the player does something cool. Look at other successful games to see where good places to put this might be.</p>
 
-<p>First, you should make a copy of your app icon sized 34x34px and call it "MGWUIcon.png" and also make a retina version 68x68px called "MGWUIcon@2x.png" (if you don't have your app icon yet, use a placeholder image).</p>
+<p>First, set the link to the app (if you have an android version, make this a web link that redirects based on the user's device) by adding this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
-<p>Twitter sharing is only enabled in iOS5 and iOS6 when the user is logged into Twitter on their device.
-You can check if they meet these conditions using the call:</p>
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU setGameLinkURL:url];
+</code></pre>
+
+<p>Where url is a link to the app (including http/https).</p>
+
+<p>Next, make a copy of your app icon sized 34x34px and call it "MGWUIcon.png" and also make a retina version 68x68px called "MGWUIcon@2x.png" (if you don't have your app icon yet, use a placeholder image).</p>
+
+<p>Twitter sharing is only enabled when the user is logged into Twitter on their device. You can check if they meet these conditions using the call:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -839,10 +866,13 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 
 <p>We're integrating facebook in all our apps for better distribution. This happens both through sharing as well as facebooks new open graph SDK. Facebook is currently one of the best platforms for getting distribution, plus it can help engage users of the game by allowing them to play with their friends or compete for high scores / achievements with their friends. For multiplayer games, we require all users to login through facebook. For single player games it is optional for users.</p>
 
-<p>First follow these steps (here's a link to the <a href="https://developers.facebook.com/apps/">Facebook App Dashboard</a>, you'll need to register as a developer):</p>
+<p>First, follow these steps (here's a link to the <a href="https://developers.facebook.com/apps/">Facebook App Dashboard</a>, you'll need to register as a developer):</p>
 
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/facebook1.png" alt="image" />
-<img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/facebook2.png" alt="image" /></p>
+<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/fb1.png" alt="image" /></p>
+
+<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/fb2.png" alt="image" /></p>
+
+<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/fb3.png" alt="image" /></p>
 
 <p>Then add this method to AppDelegate.m:</p>
 
@@ -855,43 +885,17 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 }
 </code></pre>
 
-<p>And delete this line from AppDelegate.m:</p>
+<p>And add this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
 
-<pre><code>[MGWU preFacebook];
+<pre><code>[MGWU useFacebook];
 </code></pre>
 
-<p>Finally, you should make a copy of your games logo smaller than 300px wide by 80px tall and call it "Logo.png" and also make a retina version doublethe site called "Logo@2x.png" (if you don't have your app logo yet, use a placeholder image).</p>
+<p>Finally, you should make a copy of your games logo smaller than 300px wide by 80px tall and call it "Logo.png" and also make a retina version double the size called "Logo@2x.png" (if you don't have your app logo yet, use a placeholder image).</p>
 
 <p>The login flow for Facebook will be handled automatically for you. Also when a player goes to a new device and logs in with Facebook, all their data will be transferred. The user will now be asked to authenticate with Facebook the first time they open the app, and if they say no, it will ask them again after 12 and 24 play sessions.</p>
-
-<p><strong>IMPORTANT NOTE: if you are using Kobold or Cocos, you must also add the following methods to AppDelegate.m</strong></p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [director stopAnimation];
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    [director startAnimation];
-}
-
--(void) applicationWillResignActive:(UIApplication *)application
-{
-    [director pause];
-}
-
--(void) applicationDidBecomeActive:(UIApplication *)application
-{
-    [director resume];
-}
-</code></pre>
 
 <p><a id="16"></a></p>
 
@@ -907,17 +911,20 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 <pre><code>[MGWU isFacebookActive];
 </code></pre>
 
-<p>To get the username of the logged in player:</p>
+<p>You should add a facebook share button strategically after the player does something cool. Look at other successful games to see where good places to put this might be.</p>
+
+<p>First, set the link to the app (if you have an android version, make this a web link that redirects based on the user's device) and icon of the game by adding these lines after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
 
-<pre><code>[MGWU getUsername];
+<pre><code>[MGWU setGameLinkURL:url];
+[MGWU setIconURL:iconUrl];
 </code></pre>
 
-<p>This will return a string with the players username</p>
+<p>Where url is a link to the app, and iconURL is a link to the icon (including http/https).</p>
 
-<p>You should add a facebook share button strategically after the player does something cool. Look at other successful games to see where good places to put this might be. You should only display the share button if the user is logged into Facebook in your app, you can check using this method:</p>
+<p>You should only display the share button if the user is logged into Facebook in your app, you can check using this method:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -953,26 +960,9 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 <pre><code>[MGWU likeMGWU];
 </code></pre>
 
-<p>We will also set you up with some OpenGraph actions to help drive distribution to your app. The only thing you need to do is include a button/switch to toggle opengraph on/off in some settings menu of your app. First check if facebook is active (otherwise you don't need to show this button). Then you can check the current state of whether OpenGraph is enabled or disabled with this method:</p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>[MGWU isOpenGraphActive];
-</code></pre>
-
-<p>And finally to toggle OpenGraph on or off:</p>
-
-<!--hfmd>.. sourcecode:: objective-c<hfmd-->
-
-
-<pre><code>[MGWU toggleOpenGraph];
-</code></pre>
-
 <p>Lastly, if you're not developing a turn based multiplayer game, there are two more relevant methods relating to facebook.</p>
 
-<p>The first is to allow the player to login to facebook if they are not already. This button can go in place of the toggle open graph button (since it will only be displayed when the player is not logged in).
-To log the user in:</p>
+<p>The first is to allow the player to login to facebook if they are not already. To log the user in:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -1006,9 +996,9 @@ To log the user in:</p>
 
 <p><strong>Make sure you have read the <a href="#10">Callbacks and Targets</a> tutorial as well as the <a href="#15">Getting Started with Facebook</a> and <a href="#16">Facebook Methods</a> tutorials.</strong></p>
 
-<p><strong>It would also be really good to check out our <a href="https://s3.amazonaws.com/mgwu/ghost.zip">Ghost project template</a>, we highly recommend starting from that because most of the heavy lifting has already been done.</strong> There is no need to reinvent the wheel with the menu structure for this kind of game, so not much point in starting from scratch.</p>
+<p><strong>It would also be really good to check out our <a href="https://github.com/MakeGamesWithUs/MultiplayerTurnBasedGame-SpriteBuilder">Turn Based Multiplayer Template</a>, we highly recommend starting from that because most of the heavy lifting has already been done.</strong> There is no need to reinvent the wheel with the menu structure for this kind of game, so not much point in starting from scratch.</p>
 
-<h2>When referencing the Ghost template, Command-F (find) is your friend :)</h2>
+<h2>When referencing the template, Command-F (find) is your friend :)</h2>
 
 <p>Turn Based Multiplayer games rely on Facebook. These games gain huge benefit from the ability to play and share with your friends. It also simplifies the user creation flow, no need to create an independent login, and we can even use Facebook usernames (aka vanity urls) as the username in game.</p>
 
@@ -1121,13 +1111,9 @@ To log the user in:</p>
 
 <p><strong>game1, game2 and game3 will be dictionaries of the format described in the <a href="#b">Game Object</a> section.</strong> The list of friends includes all facebook friends who also play the game.</p>
 
-<p>From here you probably want to create 3 menus, the first is a list of your current and past games, the second is players to start a game with, and finally a list of players to invite. The list of current and past games should be straightforward, you should seperate them into 3 categories, your turn, opponents turn and past games, and order them based on when they were last played to keep the fresh ones at the top. The Ghost template has a great example of this.</p>
+<p>From here you probably want to create 3 menus, the first is a list of your current and past games, the second is players to start a game with, and finally a list of players to invite. The list of current and past games should be straightforward, you should seperate them into 3 categories, your turn, opponents turn and past games, and order them based on when they were last played to keep the fresh ones at the top.</p>
 
 <p>You probably also want to refresh the data when the app receives a push notification with a game update.</p>
-
-<p><strong>The Ghost template has a great example of this in the InterfaceLayer+GamesTableLayer or TabBarController+GamesViewController</strong></p>
-
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/ghost/games.png" alt="image" /></p>
 
 <p><a id="d"></a></p>
 
@@ -1135,7 +1121,7 @@ To log the user in:</p>
 
 <p>The list of players to start a game with will have a few components.</p>
 
-<p>You want to present a list of facebook friends who also play the game, but make sure to remove the players you are currently in a game with from the list (this can be done by running through the list of existing games, the Ghost template has a great example of this in the InterfaceLayer+PlayersTableLayer or TabBarController+PlayersViewController).</p>
+<p>You want to present a list of facebook friends who also play the game, but make sure to remove the players you are currently in a game with from the list (this can be done by running through the list of existing games).</p>
 
 <p>You also need to allow players to begin games with random players, or by searching a username. To retrieve a random player:</p>
 
@@ -1173,10 +1159,6 @@ To log the user in:</p>
 <p>You probably also want to provide a function that randomly picks a facebook friend to start a game with (but make sure it won't give you a player you are currently in a game with).</p>
 
 <p>It would also be a good idea to have a recommended friends section, where it randomly suggests you 3 friends, 1 of which has played recently, 1 of which hasn't played in a week or two and 1 of which that hasn't played in a month. If the player does not have 3 friends who play the game, you can supplement it with friends to invite (we'll get to this later).</p>
-
-<p><strong>The Ghost template has a great example of this in the PlayersTableLayer or PlayersViewController</strong></p>
-
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/ghost/players.png" alt="image" /></p>
 
 <p>Finally, if you want to display a profile of another player including their win/loss record, their rankpoints, their achievements and high scores in the game, you can get this info using the call:</p>
 
@@ -1278,11 +1260,20 @@ To log the user in:</p>
 
 <p>Passing in negative numbers in rankpoints will reduce a players rankpoints.</p>
 
-<p><strong>The Ghost template has a great example of this in the GameLayer or GameViewController</strong></p>
+<p>Once you make a move, you might want to allow people to smack talk on each other's facebook walls.</p>
 
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/ghost/game.png" alt="image" /></p>
+<p>First, set the link to the app (if you have an android version, make this a web link that redirects based on the user's device) and icon of the game by adding these lines after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
-<p>Once you make a move, you might want to allow people to smack talk on each other's facebook walls. This is only possible if you are friends with your opponent, you can check this using this line:</p>
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>[MGWU setGameLinkURL:url];
+[MGWU setIconURL:iconUrl];
+</code></pre>
+
+<p>Where url is a link to the app, and iconURL is a link to the icon (including http/https).</p>
+
+<p>Posting to wall is only possible if you are friends with your opponent, you can check this using this line:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -1314,7 +1305,7 @@ To log the user in:</p>
 
 <p>The callback will be passed the updated game object.</p>
 
-<p>You probably also want to refresh the game object when the app receives a push notification with a game update. The Ghost template has a great example of this.</p>
+<p>You probably also want to refresh the game object when the app receives a push notification with a game update.</p>
 
 <p>If you want to delete a specific game, you can use the method:</p>
 
@@ -1359,7 +1350,7 @@ To log the user in:</p>
 ... ]
 </code></pre>
 
-<p>The newer messages will be later in the array, and all include an <a href="https://gist.github.com/4507119">epoch timestamp</a> representing the time they were sent. The last 100 messages will be retained. The chat does not live update, but the user will receive a push notification when he gets a message which can be used to refresh the chat. The Ghost template has a great example of this.</p>
+<p>The newer messages will be later in the array, and all include an <a href="https://gist.github.com/4507119">epoch timestamp</a> representing the time they were sent. The last 100 messages will be retained. The chat does not live update, but the user will receive a push notification when he gets a message which can be used to refresh the chat.</p>
 
 <p>To send a message, use the line:</p>
 
@@ -1373,53 +1364,30 @@ To log the user in:</p>
 
 <p>If you want to clear messages during testing, you can use the url: <a href="https://dev.makegameswith.us/clearmessages">https://dev.makegameswith.us/clearmessages</a></p>
 
-<p><strong>The Ghost template has a great example of this in the ChatLayer or ChatViewController</strong></p>
-
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/ghost/chat.png" alt="image" /></p>
-
 <p><a id="h"></a></p>
 
 <h2>h. Inviting Facebook Friends</h2>
 
-<p>You should also present a list of facebook friends to invite to the game to the user, this will get you lots more users! You can get a list of facebook friends who have iOS devices but don't have the app using this method:</p>
+<p>First, set the link to the app (if you have an android version, make this a web link that redirects based on the user's device) by adding this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
 
-<pre><code>[MGWU friendsToInvite];
+<pre><code>[MGWU setGameLinkURL:url];
 </code></pre>
 
-<p>This will return an array in the format:</p>
-
-<!--hfmd>::<hfmd-->
-
-
-<pre><code>@[
-    @{@"name":@"John A. Smith", @"username":@"johnnys"},
-    @{@"name:@"Jill Shaw", @"username":@"jjshaw"},
-... ]
-</code></pre>
-
-<p>You can then pop up a dialog to invite the friend using this line:</p>
+<p>To invite friends:</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
 
-<pre><code>[MGWU inviteFriend:@"username" withMessage:@"Check out this cool app!"];
+<pre><code>[MGWU inviteFriendsWithMessage:@"Default Invite Message"];
 </code></pre>
-
-<p>We can help you with the message if needed.</p>
-
-<p><strong>Note: you are able to start a game with a player who hasn't joined the app yet, so you should also have the player start a game with the player they are inviting.</strong></p>
-
-<p><strong>The Ghost template has a great example of this in the InviteTableLayer or InviteViewController</strong></p>
-
-<p><img src="https://s3.amazonaws.com/mgwu-misc/mgwuSDK+Tutorial/ghost/chat.png" alt="image" /></p>
 
 <p><a id="i"></a></p>
 
 <h2>i. Misc</h2>
 
-<p>There are a bunch of other intracacies about the best way to implement things in these games that we haven't covered here, the way to pick up these things is by playing around with our templates, and better yet start off with the <a href="https://s3.amazonaws.com/mgwu/ghost.zip">Ghost Template</a>!</p>
+<p>There are a bunch of other intracacies about the best way to implement things in these games that we haven't covered here, the way to pick up these things is by playing around with our templates, and better yet start off with the <a href="https://github.com/MakeGamesWithUs/MultiplayerTurnBasedGame-SpriteBuilder">Multiplayer Template</a>!</p>
 </body>
 </html>

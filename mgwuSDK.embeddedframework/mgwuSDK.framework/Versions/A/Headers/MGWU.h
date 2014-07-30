@@ -10,7 +10,7 @@
 //
 //  Contains open source code and SDKs from Crashlytics, Inc. (SecureUDID, CrashlyticsSDK), Matej Bukovinski (MBProgressHUD), Stig Brautaset (SBJson), Ray Wenderlich (iAPHelper), Facebook (FacebookConnect iOS), Tapjoy (TapjoyConnect), Arash Payan (Appirater), Benjamin Borowski and Stephane Peter (GKAchievementNotification) thank you to all!
 //
-//  MGWU_BUILD_NUMBER 424
+//  MGWU_BUILD_NUMBER 524
 //
 
 #import <UIKit/UIKit.h>
@@ -28,21 +28,10 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//Other Initializations
+//Appirater
 //
-+ (void)useCrashlytics; //Depricated do not use
-+ (void)useCrashlyticsWithApiKey:(NSString*)apiKey;
-+ (void)setTapjoyAppId:(NSString*)tapappid andSecretKey:(NSString*)tapseckey;
 + (void)setAppiraterAppId:(NSString*)appappid andAppName:(NSString*)appappname;
 + (void)launchAppStorePage;
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-//Hipmob
-//
-+ (void)setHipmobAppId:(NSString*)hipmobappid andAwayMessage:(NSString*)awaymessage;
-+ (void)displayHipmob; //*
-
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -122,35 +111,47 @@
 //Facebook
 //
 //General
++ (void)useFacebook;
 + (void)preFacebook;
 + (void)noFacebookPrompt;
++ (void)useNativeFacebookLogin;
 + (BOOL)isFacebookActive;
++ (BOOL)isFacebookLoginRequired;
 + (NSString*)getUsername;
 + (void)likeAppWithPageId:(NSString*)pageid;
 + (void)likeMGWU;
 + (void)shareWithTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description;
 + (BOOL)handleURL:(NSURL*)url;
++ (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
+
+//Extra Permissions / Friend info
++ (void)setExtraFacebookPermissions:(NSArray*)permissions;
++ (NSMutableDictionary*)completeFacebookUser;
++ (NSMutableArray*)completeFriendsList;
 
 //Open Graph (discuss with Ashu before using)
 + (BOOL)isOpenGraphActive;
 + (void)toggleOpenGraph;
 + (void)publishOpenGraphAction:(NSString*)action withParams:(NSDictionary *)ogparams;
-+ (NSString*)fbidFromUsername:(NSString*)friendname;
 
 //Single Player Games
 + (void)loginToFacebook;
 + (void)loginToFacebookWithCallback:(SEL)m onTarget:(id)t;
 + (NSMutableArray *)playingFriends;
-+ (BOOL)canInviteFriends;
-+ (void)inviteFriendsWithMessage:(NSString*)message;
-+ (void)inviteFriendsWithMessage:(NSString *)message withCallback:(SEL)m onTarget:(id)t;
 
 //Multiplayer Games
 + (void)forceFacebook;
-+ (NSMutableArray *)friendsToInvite;
-+ (void)inviteFriend:(NSString*)friendname withMessage:(NSString*)message; //*
-+ (BOOL)isFriend:(NSString*)friendname;
-+ (void)postToFriendsWall:(NSString*)friendname withTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description; //*
++ (BOOL)isFriend:(NSString*)friendId;
++ (void)postToFriendsWall:(NSString*)friendId withTitle:(NSString*)title caption:(NSString*)caption andDescription:(NSString*)description; //*
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//SMS / Email Sharing
++ (void)setGameLinkURL:(NSString*)url;
++ (void)setIconURL:(NSString*)url;
++ (BOOL)canInviteFriends;
++ (void)inviteFriendsWithMessage:(NSString*)message;
++ (void)inviteFriendsWithMessage:(NSString *)message withCallback:(SEL)m onTarget:(id)t;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -174,9 +175,21 @@
 + (void)getRandomGameWithCallback:(SEL)m onTarget:(id)t;
 + (void)getGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
 + (void)deleteGame:(int)gameId withCallback:(SEL)m onTarget:(id)t;
-+ (void)getPlayerWithUsername:(NSString*)user withCallback:(SEL)m onTarget:(id)t;
-+ (void)getAchievementsForPlayer:(NSString*)playername withCallback:(SEL)m onTarget:(id)t;
++ (void)getPlayerWithId:(NSString*)playerId withCallback:(SEL)m onTarget:(id)t;
++ (void)getAchievementsForPlayer:(NSString*)playerId withCallback:(SEL)m onTarget:(id)t;
 + (void)getRandomPlayerWithCallback:(SEL)m onTarget:(id)t;
++ (void)followPlayerWithId:(NSString*)playerId;
++ (void)unfollowPlayerWithId:(NSString*)playerId;
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//Hub Features
+//
++ (void)getFeedWithCallback:(SEL)m onTarget:(id)t;
++ (void)getTopItemsWithCallback:(SEL)m onTarget:(id)t;
++ (void)createItem:(NSDictionary*)data withName:(NSString*)itemName andDifficulty:(NSString*)difficulty withCallback:(SEL)m onTarget:(id)t;
++ (void)likeItem:(int)itemId;
++ (void)completeItem:(int)itemId withScore:(int)score;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -191,6 +204,7 @@
 //
 + (void)useS3WithAccessKey:(NSString*)accessKey andSecretKey:(NSString*)secretKey;
 + (void)getFileWithExtension:(NSString*)ext forGame:(int)gameId andMove:(int)moveNumber withCallback:(SEL)m onTarget:(id)t;
++ (void)flagContent:(NSDictionary*)info withCallback:(SEL)m onTarget:(id)t;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -212,5 +226,7 @@
 + (void)test;
 + (void)local;
 + (void)invisiblePause;
++ (void)downloadZippedFileFromURL:(NSString*)zipUrl toPath:(NSString*)filePath withCallback:(SEL)m onTarget:(id)t;
++ (void)downloadFileFromURL:(NSString*)fileUrl toPath:(NSString*)filePath withCallback:(SEL)m onTarget:(id)t;
 
 @end
