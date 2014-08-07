@@ -358,14 +358,14 @@ NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"sc
 
 <h2>3. Prompt for Rating and Reminder Message</h2>
 
-<p>We provide functionality to prompt users to rate your app on the app store. Add the line:</p>
+<p>We provide functionality to prompt users to rate your app on the app store. Add this line after [MGWU loadMGWU]; in AppDelegate.m:</p>
 
 <pre><code>[MGWU setAppiraterAppId:appid andAppName:appname];
 </code></pre>
 
 <p>Where the appid is the iTunes App ID from iTunes Connect, and appname is the name of your app.</p>
 
-<p>If you want to send reminder push notifications to a player if they haven't opened the app in a while. You can set the message for the reminder push notifications with this line of code:</p>
+<p>If you want to send reminder push notifications to a player if they haven't opened the app in a while. You can set the message for the reminder push notifications with this line of code (after loadMGWU):</p>
 
 <!--hfmd>.. sourcecode:: objective-c<hfmd-->
 
@@ -896,6 +896,33 @@ Then when the user taps on the tweet button, use this method to pull up the widg
 <p>Finally, you should make a copy of your games logo smaller than 300px wide by 80px tall and call it "Logo.png" and also make a retina version double the size called "Logo@2x.png" (if you don't have your app logo yet, use a placeholder image).</p>
 
 <p>The login flow for Facebook will be handled automatically for you. Also when a player goes to a new device and logs in with Facebook, all their data will be transferred. The user will now be asked to authenticate with Facebook the first time they open the app, and if they say no, it will ask them again after 12 and 24 play sessions.</p>
+
+<p><strong>IMPORTANT NOTE: if you are using Cocos2D, you must also add the following methods to AppDelegate.m</strong></p>
+
+<!--hfmd>.. sourcecode:: objective-c<hfmd-->
+
+
+<pre><code>- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [director stopAnimation];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [director startAnimation];
+}
+
+-(void) applicationWillResignActive:(UIApplication *)application
+{
+    [director pause];
+}
+
+-(void) applicationDidBecomeActive:(UIApplication *)application
+{
+    [[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+    [director resume];
+}
+</code></pre>
 
 <p><a id="16"></a></p>
 
